@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import type { FC, ReactNode } from 'react'
+import './global.css'
 
 const OpenSans = Open_Sans({
   subsets: ['latin'],
