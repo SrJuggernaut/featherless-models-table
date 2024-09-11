@@ -18,7 +18,14 @@ export default [
   {
     rules: {
       '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-line' }]
-    },
-    ignores: ['src/styled-system/**/*']
+    }
+  },
+  {
+    ignores: [
+      'node_modules/**/*',
+      'postcss.config.js',
+      'tailwind.config.js',
+      '.next/**/*'
+    ]
   }
 ]
