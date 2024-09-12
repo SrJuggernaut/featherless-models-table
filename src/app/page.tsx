@@ -3,8 +3,7 @@ import { ApiResponse } from '@/types/featherless'
 import { formatDate } from '@/utilities/date'
 import { FC } from 'react'
 
-// export const revalidate = 3600 // 1 hour
-export const revalidate = 60 // 1 minute for development
+export const revalidate = 3600 // 1 hour
 
 const getData = async (): Promise<ApiResponse & { lastUpdated: string, date: string }> => {
   if (process.env.NODE_ENV === 'development') {
