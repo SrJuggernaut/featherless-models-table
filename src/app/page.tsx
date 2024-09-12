@@ -1,33 +1,36 @@
 import ModelsTable from '@/components/ModelsTable'
 import { ApiResponse } from '@/types/featherless'
+import { formatDate } from '@/utilities/date'
 import { FC } from 'react'
 
-const AN_HOUR_IN_SECONDS = 60 * 60
+// export const revalidate = 3600 // 1 hour
+export const revalidate = 60 // 1 minute for development
 
-const getData = async (): Promise<ApiResponse & { date: string }> => {
+const getData = async (): Promise<ApiResponse & { lastUpdated: string, date: string }> => {
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const data = await require('@/data.json')
     // Last data was fetched 9 september 2024
     return {
       ...data,
-      date: new Date('2024-09-09').toISOString()
+      date: new Date('2024-09-09').toISOString(),
+      lastUpdated: new Date('2024-09-09').toISOString()
     }
   }
   const res = await fetch('https://api.featherless.ai/feather/models?page=1&perPage=9999', {
     next: {
-      revalidate: AN_HOUR_IN_SECONDS
+      revalidate: 60
     }
   })
-  return { ...await res.json(), date: new Date(res.headers.get('last-modified') as string).toISOString() }
+  return { ...await res.json(), lastUpdated: new Date(res.headers.get('last-modified') as string).toISOString(), date: new Date(res.headers.get('date') as string) }
 }
 
 const page: FC = async () => {
-  const { items, date } = await getData()
+  const { items, date, lastUpdated } = await getData()
   return (
     <div className="container mx-auto py-10">
       <ModelsTable data={items} />
-      <p>Data last updated: <strong>{new Date(date).toISOString()}</strong></p>
+      <p>Last time fetched: <strong>{formatDate(new Date(date))}</strong> | Last updated: <strong>{formatDate(new Date(lastUpdated))}</strong></p>
     </div>
   )
 }
