@@ -14,13 +14,13 @@ const columns: ColumnDef<ModelItem>[] = [
         size="icon"
         asChild
       >
-        <a href={`https://featherless.ai/models/${props.row.original.id}`}><Feather size={12} /></a>
+        <a target="_blank" href={`https://featherless.ai/models/${props.row.original.id}`}><Feather size={12} /></a>
       </Button>
       <Button
         size="icon"
         asChild
       >
-        <a href={`https://huggingface.co/${props.row.original.id}`}>🤗</a>
+        <a target="_blank" href={`https://huggingface.co/${props.row.original.id}`}>🤗</a>
       </Button>
       <TooltipProvider>
         <Tooltip>
