@@ -23,6 +23,7 @@ export default [
   {
     ignores: [
       'node_modules/**/*',
+      'next.config.mjs',
       'postcss.config.js',
       'tailwind.config.js',
       '.next/**/*'
