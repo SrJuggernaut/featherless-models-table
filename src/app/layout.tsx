@@ -9,8 +9,8 @@ const OpenSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Featherless Models',
-  description: 'A dynamic table of Featherless Models'
+  title: 'Featherless Models Table',
+  description: 'A dynamic table of Featherless Models that can be filtered, sorted, and paginated. Updated every hour.'
 }
 
 interface RootLayoutProps {
