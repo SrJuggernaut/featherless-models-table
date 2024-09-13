@@ -50,8 +50,8 @@ const columns: ColumnDef<ModelItem>[] = [
   { accessorKey: 'health', header: 'Health' },
   { accessorKey: 'avg_rating', header: 'Rating', cell: (props) => { return <p className="text-center">{props.getValue() as number}</p> } },
   { accessorKey: 'total_reviews', header: 'Reviews', cell: (props) => { return <p className="text-center">{props.getValue() as number}</p> } },
-  { accessorKey: 'acc_tags', header: 'Tags', cell: (props) => { return (props.getValue() as string[]).map((tag) => <Badge key={tag}>{tag}</Badge>) } },
-  { accessorKey: 'is_gated', header: 'Gated' },
+  { accessorKey: 'acc_tags', header: 'Tags', cell: (props) => { return (props.getValue() as string[] ?? []).map((tag) => <Badge key={tag}>{tag}</Badge>) } },
+  { accessorKey: 'is_gated', header: 'Gated', cell: (props) => { return <p className="text-center">{props.getValue() as boolean | undefined ? 'Yes' : 'No'}</p> } },
   { accessorKey: 'created_at', header: 'Created', sortingFn: (rowA, rowB, columnId) => { return new Date(rowA.getValue(columnId) as string).getTime() - new Date(rowB.getValue(columnId) as string).getTime() }, cell: (props) => formatDate(new Date(props.getValue() as string)) },
   { accessorKey: 'updated_at', header: 'Modified', sortingFn: (rowA, rowB, columnId) => { return new Date(rowA.getValue(columnId) as string).getTime() - new Date(rowB.getValue(columnId) as string).getTime() }, cell: (props) => formatDate(new Date(props.getValue() as string)) }
 ]
