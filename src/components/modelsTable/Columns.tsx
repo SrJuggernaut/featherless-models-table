@@ -9,18 +9,18 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/
 
 const columns: ColumnDef<ModelItem>[] = [
   { accessorKey: 'actions', cell: (props) => (
-    <div className="flex space-x-1">
+    <div className="grid grid-flow-col gap-1">
       <Button
         size="icon"
         asChild
       >
-        <a target="_blank" href={`https://featherless.ai/models/${props.row.original.id}`}><Feather size={12} /></a>
+        <a target="_blank" href={`https://featherless.ai/models/${props.row.original.id}`}><Feather size="1em" /></a>
       </Button>
       <Button
         size="icon"
         asChild
       >
-        <a target="_blank" href={`https://huggingface.co/${props.row.original.id}`}>🤗</a>
+        <a target="_blank" href={`https://huggingface.co/${props.row.original.id}`} className="text-xs p-2">🤗</a>
       </Button>
       <TooltipProvider>
         <Tooltip>
@@ -29,7 +29,7 @@ const columns: ColumnDef<ModelItem>[] = [
               size="icon"
               onClick={() => navigator.clipboard.writeText(props.row.original.id)}
             >
-              <Copy size={12} />
+              <Copy size="1em" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
@@ -39,7 +39,7 @@ const columns: ColumnDef<ModelItem>[] = [
       </TooltipProvider>
 
     </div>
-  ) },
+  ), enableColumnFilter: false, enableSorting: false, enableHiding: false },
   { accessorKey: 'id', header: 'ID' },
   { accessorKey: 'name', header: 'Name' },
   { accessorKey: 'owned_by', header: 'Owner' },

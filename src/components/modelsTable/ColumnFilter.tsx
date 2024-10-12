@@ -2,7 +2,9 @@ import ComboBox from '@/components/ui/ComboBox'
 import { Input } from '@/components/ui/input'
 import { ModelItem } from '@/types/featherless'
 import { Column } from '@tanstack/react-table'
+import { X } from 'lucide-react'
 import { FC } from 'react'
+import { Button } from '../ui/button'
 
 export type ColumnFilterProps = {
   column: Column<ModelItem>
@@ -16,13 +18,26 @@ const ColumnFilter: FC<ColumnFilterProps> = ({ column }) => {
       case 'health':
       case 'model_class':{
         const autoCompleteSuggestions = Array.from(column.getFacetedUniqueValues().keys()).sort().slice(0, 5000)
+        const currentValue = column.getFilterValue() as string || ''
         return (
-          <ComboBox
-            value={column.getFilterValue() as string}
-            onChange={(value) => column.setFilterValue(value)}
-            options={autoCompleteSuggestions.map((value) => ({ value, label: value }))}
-            placeholder={column.columnDef.header as string}
-          />
+          <div className="flex">
+            <ComboBox
+              value={currentValue}
+              onChange={(value) => column.setFilterValue(value)}
+              options={autoCompleteSuggestions.map((value) => ({ value, label: value }))}
+              placeholder={column.columnDef.header as string}
+            />
+            {currentValue !== '' && (
+              <Button
+                variant="outline"
+                size="icon"
+                className="aspect-square"
+                onClick={() => column.setFilterValue(undefined)}
+              >
+                <X size="1em" />
+              </Button>
+            )}
+          </div>
         )
       }
       case 'total_reviews':
