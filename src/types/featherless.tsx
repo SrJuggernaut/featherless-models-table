@@ -26,3 +26,14 @@ export type ApiResponse = {
   items: ModelItem[]
   pagination: Pagination
 }
+
+export interface NewModelItem {
+  id: string
+  name: string
+  created: number
+  model_class: string
+  owned_by: string
+  context_length: number
+  max_completion_tokens: number
+  is_gated?: boolean
+}

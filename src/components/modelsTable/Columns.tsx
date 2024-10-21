@@ -3,43 +3,10 @@ import { Badge } from '@/components/ui/badge'
 import { ModelItem } from '@/types/featherless'
 import { formatDate } from '@/utilities/date'
 import { ColumnDef } from '@tanstack/react-table'
-import { Copy, Feather } from 'lucide-react'
-import { Button } from '../ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
+import ActionsCell from '../ActionsCell'
 
 const columns: ColumnDef<ModelItem>[] = [
-  { accessorKey: 'actions', cell: (props) => (
-    <div className="grid grid-flow-col gap-1">
-      <Button
-        size="icon"
-        asChild
-      >
-        <a target="_blank" href={`https://featherless.ai/models/${props.row.original.id}`}><Feather size="1em" /></a>
-      </Button>
-      <Button
-        size="icon"
-        asChild
-      >
-        <a target="_blank" href={`https://huggingface.co/${props.row.original.id}`} className="text-xs p-2">🤗</a>
-      </Button>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              onClick={() => navigator.clipboard.writeText(props.row.original.id)}
-            >
-              <Copy size="1em" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Copy ID to clipboard</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-
-    </div>
-  ), enableColumnFilter: false, enableSorting: false, enableHiding: false },
+  { accessorKey: 'actions', cell: (props) => <ActionsCell id={props.row.original.id} />, enableColumnFilter: false, enableSorting: false, enableHiding: false },
   { accessorKey: 'id', header: 'ID' },
   { accessorKey: 'name', header: 'Name' },
   { accessorKey: 'owned_by', header: 'Owner' },
