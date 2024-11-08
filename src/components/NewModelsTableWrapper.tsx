@@ -40,22 +40,27 @@ const NewModelsTableWrapper = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center  rounded-md border mb-4">
+      <div className="flex flex-col md:flex-row justify-between   rounded-md border mb-4">
         <div
           className="p-2"
         >
           Last updated: <strong>{formatDate(new Date(date))}</strong>
         </div>
         <div
-          className="flex items-center border-r border-l px-4 py-2 gap-2"
+          className="flex items-center border-y md:border-y-0 md:border-x px-4 py-2 gap-2"
         >
-          <Label id="onlyAvailableLabel" htmlFor="onlyAvailable" className="inline-flex text-sm w-max flex-1">
+          <Label
+            id="onlyAvailableLabel"
+            htmlFor="onlyAvailable"
+            className="inline-flex text-sm w-max flex-0"
+          >
             <span className="w-max pr-2">
               Only available
             </span>
             <Switch
               id="onlyAvailable"
-              checked={onlyAvailable}
+              checked={apiKey !== '' ? onlyAvailable : false}
+              disabled={apiKey === ''}
               onCheckedChange={(checked) => {
                 if (typeof window !== 'undefined') {
                   localStorage.setItem('onlyAvailable', checked ? 'true' : 'false')
@@ -65,7 +70,7 @@ const NewModelsTableWrapper = () => {
               aria-labelledby="onlyAvailableLabel"
             />
           </Label>
-          <Label htmlFor="apiKey" className="inline-flex text-sm items-center w-max flex-1">
+          <Label htmlFor="apiKey" className="inline-flex flex-1 text-sm items-center w-max">
             <span className="w-max pr-2">
               API key
             </span>
@@ -85,7 +90,7 @@ const NewModelsTableWrapper = () => {
           </Label>
         </div>
         <div
-          className="p-2"
+          className="flex justify-end p-2"
         >
           <TooltipProvider>
             <Tooltip>
