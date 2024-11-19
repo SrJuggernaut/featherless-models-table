@@ -61,6 +61,7 @@ const ModelsTable: FC<ModelsTableProps> = ({ data }) => {
                             variant="ghost"
                             size="icon"
                             onClick={() => header.column.toggleSorting(header.column.getIsSorted() === 'asc')}
+                            type="button"
                           >
                             {header.column.getIsSorted() === 'asc'
                               ? <ArrowUp className="h-4 w-4" />
@@ -111,13 +112,18 @@ const ModelsTable: FC<ModelsTableProps> = ({ data }) => {
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          type="button"
         >
           Previous
         </Button>
         <div className="flex items-center gap-1">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
+              <Button
+                variant="outline"
+                className="ml-auto"
+                type="button"
+              >
                 Column Visibility
               </Button>
             </DropdownMenuTrigger>
@@ -170,6 +176,7 @@ const ModelsTable: FC<ModelsTableProps> = ({ data }) => {
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          type="button"
         >
           Next
         </Button>

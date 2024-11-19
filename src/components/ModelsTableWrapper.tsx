@@ -34,17 +34,18 @@ const ModelsTableWrapper: FC = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button onClick={async () => {
-                const { items } = await getData()
-                const date = new Date().toISOString()
-                if (typeof window !== 'undefined') {
-                  localStorage.setItem('items', JSON.stringify(items))
-                  localStorage.setItem('date', date)
-                  setItems(items)
-                  setDate(date)
-                }
-                console.log(items)
-              }}
+              <Button
+                onClick={async () => {
+                  if (typeof window !== 'undefined') {
+                    const { items } = await getData()
+                    const date = new Date().toISOString()
+                    localStorage.setItem('items', JSON.stringify(items))
+                    localStorage.setItem('date', date)
+                    setItems(items)
+                    setDate(date)
+                  }
+                }}
+                type="button"
               >
                 Refresh
               </Button>

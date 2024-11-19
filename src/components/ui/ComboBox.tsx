@@ -23,6 +23,7 @@ const ComboBox: FC<ComboBoxProps> = ({ value, onChange, options, placeholder }) 
             role="combobox"
             aria-expanded={open}
             className="w-max justify-between"
+            type="button"
           >
             {
               value

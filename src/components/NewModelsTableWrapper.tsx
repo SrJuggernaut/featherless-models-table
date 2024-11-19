@@ -95,17 +95,18 @@ const NewModelsTableWrapper = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={async () => {
-                  const { data } = await getData(onlyAvailable !== undefined && apiKey !== '' ? apiKey : undefined)
-                  const date = new Date().toISOString()
-                  if (typeof window !== 'undefined') {
-                    localStorage.setItem('newModels', JSON.stringify(data))
-                    localStorage.setItem('newModelsDate', date)
-                    setItems(data)
-                    setDate(date)
-                  }
-                  console.log(data)
-                }}
+                <Button
+                  onClick={async () => {
+                    const { data } = await getData(onlyAvailable !== undefined && apiKey !== '' ? apiKey : undefined)
+                    const date = new Date().toISOString()
+                    if (typeof window !== 'undefined') {
+                      localStorage.setItem('newModels', JSON.stringify(data))
+                      localStorage.setItem('newModelsDate', date)
+                      setItems(data)
+                      setDate(date)
+                    }
+                  }}
+                  type="button"
                 >
                   Refresh
                 </Button>
