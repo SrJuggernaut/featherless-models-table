@@ -12,12 +12,14 @@ const ActionsCell: FC<ActionsCellProps> = ({ id }) => {
       <Button
         size="icon"
         asChild
+        type="button"
       >
         <a target="_blank" href={`https://featherless.ai/models/${id}`}><Feather size="1em" /></a>
       </Button>
       <Button
         size="icon"
         asChild
+        type="button"
       >
         <a target="_blank" href={`https://huggingface.co/${id}`} className="text-xs p-2">🤗</a>
       </Button>
@@ -27,6 +29,7 @@ const ActionsCell: FC<ActionsCellProps> = ({ id }) => {
             <Button
               size="icon"
               onClick={() => navigator.clipboard.writeText(id)}
+              type="button"
             >
               <Copy size="1em" />
             </Button>

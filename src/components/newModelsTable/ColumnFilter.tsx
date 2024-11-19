@@ -32,6 +32,7 @@ const ColumnFilter: FC<ColumnFilterProps> = ({ column }) => {
                 size="icon"
                 className="aspect-square"
                 onClick={() => column.setFilterValue(undefined)}
+                type="button"
               >
                 <X size="1em" />
               </Button>
